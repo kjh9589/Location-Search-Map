@@ -19,9 +19,9 @@ object RetrofitUtil {
             .build()
     }
 
-    private fun customClient(interceptor: Interceptor): OkHttpClient{
+    private fun customClient(interceptor: Interceptor): OkHttpClient {
         val logger = HttpLoggingInterceptor()
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             logger.level = HttpLoggingInterceptor.Level.BODY
         } else {
             logger.level = HttpLoggingInterceptor.Level.NONE
@@ -33,8 +33,8 @@ object RetrofitUtil {
             .build()
     }
 
-    class AppInterceptor: Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response = with(chain){
+    class AppInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
             val newRequest = request().newBuilder()
                 .addHeader("appKey", BuildConfig.TMAP_API_KEY)
                 .build()
